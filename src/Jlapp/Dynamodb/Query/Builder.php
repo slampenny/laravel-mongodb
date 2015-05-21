@@ -1,4 +1,4 @@
-<?php namespace Jenssegers\Mongodb\Query;
+<?php namespace Jlapp\Dynament\Query;
 
 use MongoId;
 use MongoRegex;
@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Database\Query\Builder as BaseBuilder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Collection;
-use Jenssegers\Mongodb\Connection;
+use Jlapp\Dynament\Connection;
 
 class Builder extends BaseBuilder {
 

@@ -1,6 +1,6 @@
-<?php namespace Jenssegers\Mongodb\Auth;
+<?php namespace Jlapp\Dynament\Auth;
 
-use Jenssegers\Mongodb\Auth\DatabaseTokenRepository as DbRepository;
+use Jlapp\Dynament\Auth\DatabaseTokenRepository as DbRepository;
 
 class PasswordResetServiceProvider extends \Illuminate\Auth\Passwords\PasswordResetServiceProvider {
 

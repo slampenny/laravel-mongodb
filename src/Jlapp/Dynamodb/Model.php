@@ -1,16 +1,16 @@
-<?php namespace Jenssegers\Mongodb;
+<?php namespace Jlapp\Dynament;
 
 use DateTime;
 use MongoId;
 use MongoDate;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Jenssegers\Mongodb\Eloquent\Builder;
-use Jenssegers\Mongodb\Relations\EmbedsOneOrMany;
-use Jenssegers\Mongodb\Relations\EmbedsMany;
-use Jenssegers\Mongodb\Relations\EmbedsOne;
+use Jlapp\Dynament\Eloquent\Builder;
+use Jlapp\Dynament\Relations\EmbedsOneOrMany;
+use Jlapp\Dynament\Relations\EmbedsMany;
+use Jlapp\Dynament\Relations\EmbedsOne;
 
-abstract class Model extends \Jenssegers\Eloquent\Model {
+abstract class Model extends \Jlapp\Eloquent\Model {
 
     /**
      * The collection associated with the model.

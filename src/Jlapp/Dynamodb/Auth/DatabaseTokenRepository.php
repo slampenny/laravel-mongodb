@@ -1,4 +1,4 @@
-<?php namespace Jenssegers\Mongodb\Auth;
+<?php namespace Jlapp\Dynament\Auth;
 
 use DateTime;
 use MongoDate;

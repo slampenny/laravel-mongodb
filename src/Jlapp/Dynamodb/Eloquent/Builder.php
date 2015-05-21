@@ -1,4 +1,4 @@
-<?php namespace Jenssegers\Mongodb\Eloquent;
+<?php namespace Jlapp\Dynament\Eloquent;
 
 use MongoCursor;
 use Illuminate\Database\Eloquent\Relations\Relation;

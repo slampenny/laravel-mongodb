@@ -1,9 +1,9 @@
-<?php namespace Jenssegers\Mongodb\Relations;
+<?php namespace Jlapp\Dynament\Relations;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany as EloquentHasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne as EloquentHasOne;
 
-class HasMany extends EloquentHasMany {
+class HasOne extends EloquentHasOne {
 
     /**
      * Add the constraints for a relationship count query.

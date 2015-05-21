@@ -1,11 +1,11 @@
-<?php namespace Jenssegers\Mongodb\Relations;
+<?php namespace Jlapp\Dynament\Relations;
 
 use MongoId;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Collection as BaseCollection;
-use Jenssegers\Mongodb\Eloquent\Collection;
+use Jlapp\Dynament\Eloquent\Collection;
 
 abstract class EmbedsOneOrMany extends Relation {
 

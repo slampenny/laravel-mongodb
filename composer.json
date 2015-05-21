@@ -1,11 +1,11 @@
 {
-    "name": "jenssegers/mongodb",
-    "description": "A MongoDB based Eloquent model and Query builder for Laravel 4",
-    "keywords": ["laravel","eloquent","mongodb","mongo","database","model"],
+    "name": "jlapp/dynament",
+    "description": "A DynamoDB based Eloquent model and Query builder for Laravel 5",
+    "keywords": ["laravel","eloquent","dynamodb","dynamo","database","model"],
     "authors": [
         {
-            "name": "Jens Segers",
-            "homepage": "http://jenssegers.be"
+            "name": "Jordan Lapp",
+            "homepage": "https://ca.linkedin.com/in/jordanlapp"
         }
     ],
     "license" : "MIT",
@@ -14,7 +14,8 @@
         "illuminate/support": "5.0.*",
         "illuminate/container": "5.0.*",
         "illuminate/database": "5.0.*",
-        "illuminate/events": "5.0.*"
+        "illuminate/events": "5.0.*",
+        "aws/aws-sdk-php": "2.*"
     },
     "require-dev": {
         "orchestra/testbench": "3.0.*",
@@ -23,8 +24,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Jenssegers\\Mongodb": "src/",
-            "Jenssegers\\Eloquent": "src/"
+            "Jlapp\\Dynamodb": "src/",
+            "Jlapp\\Eloquent": "src/"
         }
     },
     "autoload-dev": {
@@ -33,10 +34,6 @@
             "tests/models",
             "tests/seeds"
         ]
-    },
-    "suggest": {
-        "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB",
-        "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB"
     },
     "minimum-stability": "dev"
 }

@@ -1,7 +1,7 @@
-<?php namespace Jenssegers\Mongodb\Schema;
+<?php namespace Jlapp\Dynament\Schema;
 
 use Closure;
-use Jenssegers\Mongodb\Connection;
+use Jlapp\Dynament\Connection;
 
 class Builder extends \Illuminate\Database\Schema\Builder {
 

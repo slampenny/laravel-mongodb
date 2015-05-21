@@ -1,4 +1,4 @@
-<?php namespace Jenssegers\Mongodb\Relations;
+<?php namespace Jlapp\Dynament\Relations;
 
 use Illuminate\Database\Eloquent\Relations\MorphTo as EloquentMorphTo;
 

@@ -1,4 +1,4 @@
-<?php namespace Jenssegers\Mongodb;
+<?php namespace Jlapp\Dynament;
 
 use MongoClient;
 

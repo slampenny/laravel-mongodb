@@ -1,4 +1,4 @@
-<?php namespace Jenssegers\Mongodb\Query;
+<?php namespace Jlapp\Dynament\Query;
 
 use Illuminate\Database\Query\Processors\Processor as BaseProcessor;
 

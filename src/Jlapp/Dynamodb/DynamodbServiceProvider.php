@@ -1,8 +1,8 @@
-<?php namespace Jenssegers\Mongodb;
+<?php namespace Jlapp\Dynament;
 
 use Illuminate\Support\ServiceProvider;
 
-class MongodbServiceProvider extends ServiceProvider {
+class DynamentServiceProvider extends ServiceProvider {
 
     /**
      * Bootstrap the application events.
