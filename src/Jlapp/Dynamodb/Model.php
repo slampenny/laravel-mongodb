@@ -49,11 +49,11 @@ abstract class Model extends \Jlapp\Eloquent\Model {
             $value = $this->attributes['_id'];
         }
 
-        // Convert MongoId's to string.
+        /*// Convert MongoId's to string.
         if ($value instanceof MongoId)
         {
             return (string) $value;
-        }
+        }*/
 
         return $value;
     }
@@ -79,7 +79,7 @@ abstract class Model extends \Jlapp\Eloquent\Model {
     {
         // If no relation name was given, we will use this debug backtrace to extract
         // the calling method's name and use that as the relationship name as most
-        // of the time this will be what we desire to use for the relatinoships.
+        // of the time this will be what we desire to use for the relationships.
         if (is_null($relation))
         {
             list(, $caller) = debug_backtrace(false);
@@ -115,7 +115,7 @@ abstract class Model extends \Jlapp\Eloquent\Model {
     {
         // If no relation name was given, we will use this debug backtrace to extract
         // the calling method's name and use that as the relationship name as most
-        // of the time this will be what we desire to use for the relatinoships.
+        // of the time this will be what we desire to use for the relationships.
         if (is_null($relation))
         {
             list(, $caller) = debug_backtrace(false);
@@ -149,10 +149,10 @@ abstract class Model extends \Jlapp\Eloquent\Model {
     public function fromDateTime($value)
     {
         // If the value is already a MongoDate instance, we don't need to parse it.
-        if ($value instanceof MongoDate)
+        /*if ($value instanceof MongoDate)
         {
             return $value;
-        }
+        }*/
 
         // Let Eloquent convert the value to a DateTime instance.
         if ( ! $value instanceof DateTime)
@@ -160,7 +160,7 @@ abstract class Model extends \Jlapp\Eloquent\Model {
             $value = parent::asDateTime($value);
         }
 
-        return new MongoDate($value->getTimestamp());
+        return $value;
     }
 
     /**
@@ -172,10 +172,10 @@ abstract class Model extends \Jlapp\Eloquent\Model {
     protected function asDateTime($value)
     {
         // Convert MongoDate instances.
-        if ($value instanceof MongoDate)
+        /*if ($value instanceof MongoDate)
         {
             return Carbon::createFromTimestamp($value->sec);
-        }
+        }*/
 
         return parent::asDateTime($value);
     }
@@ -195,10 +195,10 @@ abstract class Model extends \Jlapp\Eloquent\Model {
      *
      * @return MongoDate
      */
-    public function freshTimestamp()
+    /*public function freshTimestamp()
     {
         return new MongoDate;
-    }
+    }*/
 
     /**
      * Get the table associated with the model.
@@ -302,14 +302,14 @@ abstract class Model extends \Jlapp\Eloquent\Model {
         // Support keys in dot notation.
         elseif (str_contains($key, '.'))
         {
-            if (in_array($key, $this->getDates()) && $value)
+            /*if (in_array($key, $this->getDates()) && $value)
             {
                 $value = $this->fromDateTime($value);
-            }
+            }*/
 
             array_set($this->attributes, $key, $value);
 
-return;
+            return;
         }
 
         parent::setAttribute($key, $value);
@@ -483,8 +483,8 @@ return;
     /**
      * Create a new Eloquent query builder for the model.
      *
-     * @param  \Jenssegers\Mongodb\Query\Builder $query
-     * @return \Jenssegers\Mongodb\Eloquent\Builder|static
+     * @param  \Jlapp\Dynamodb\Query\Builder $query
+     * @return \Jlapp\Dynamodb\Eloquent\Builder|static
      */
     public function newEloquentBuilder($query)
     {

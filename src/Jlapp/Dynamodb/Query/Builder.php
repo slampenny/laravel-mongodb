@@ -15,7 +15,7 @@ class Builder extends BaseBuilder {
     /**
      * The database collection.
      *
-     * @var MongoCollection
+     * @var DynamoCollection
      */
     protected $collection;
 
@@ -593,7 +593,7 @@ class Builder extends BaseBuilder {
     /**
      * Run a truncate statement on the table.
      *
-     * @return void
+     * @return boolean
      */
     public function truncate()
     {
@@ -611,14 +611,14 @@ class Builder extends BaseBuilder {
      */
     public function lists($column, $key = null)
     {
-        if ($key == '_id')
+        if ($key == 'id')
         {
             $results = new Collection($this->get([$column, $key]));
 
             // Convert MongoId's to strings so that lists can do its work.
             $results = $results->map(function ($item)
             {
-                $item['_id'] = (string) $item['_id'];
+                $item['id'] = (string) $item['id'];
 
                 return $item;
             });
@@ -778,10 +778,10 @@ class Builder extends BaseBuilder {
      */
     public function convertKey($id)
     {
-        if (is_string($id) and strlen($id) === 24 and ctype_xdigit($id))
+        /*if (is_string($id) and strlen($id) === 24 and ctype_xdigit($id))
         {
             return new MongoId($id);
-        }
+        }*/
 
         return $id;
     }
@@ -873,10 +873,10 @@ class Builder extends BaseBuilder {
             }
 
             // Convert DateTime values to MongoDate.
-            if (isset($where['value']) and $where['value'] instanceof DateTime)
+            /*if (isset($where['value']) and $where['value'] instanceof DateTime)
             {
                 $where['value'] = new MongoDate($where['value']->getTimestamp());
-            }
+            }*/
 
             // The next item in a "chain" of wheres devices the boolean of the
             // first item. So if we see that there are multiple wheres, we will

@@ -25,7 +25,7 @@ class DynamentServiceProvider extends ServiceProvider {
     {
         $this->app->resolving('db', function ($db)
         {
-            $db->extend('mongodb', function ($config)
+            $db->extend('dynamodb', function ($config)
             {
                 return new Connection($config);
             });

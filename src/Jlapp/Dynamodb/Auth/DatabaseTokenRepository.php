@@ -1,5 +1,6 @@
 <?php namespace Jlapp\Dynament\Auth;
 
+use Carbon\Carbon;
 use DateTime;
 use MongoDate;
 
@@ -14,7 +15,7 @@ class DatabaseTokenRepository extends \Illuminate\Auth\Passwords\DatabaseTokenRe
      */
     protected function getPayload($email, $token)
     {
-        return ['email' => $email, 'token' => $token, 'created_at' => new MongoDate];
+        return ['email' => $email, 'token' => $token, 'created_at' => new Carbon()];
     }
 
     /**

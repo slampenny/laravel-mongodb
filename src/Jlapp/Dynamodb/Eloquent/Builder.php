@@ -1,6 +1,6 @@
 <?php namespace Jlapp\Dynament\Eloquent;
 
-use MongoCursor;
+/*use MongoCursor;*/
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
@@ -218,15 +218,15 @@ class Builder extends EloquentBuilder {
         $results = $this->query->raw($expression);
 
         // Convert MongoCursor results to a collection of models.
-        if ($results instanceof MongoCursor)
+        /*if ($results instanceof MongoCursor)
         {
             $results = iterator_to_array($results, false);
 
             return $this->model->hydrate($results);
-        }
+        }*/
 
         // The result is a single object.
-        elseif (is_array($results) and array_key_exists('_id', $results))
+        /*else*/if (is_array($results) and array_key_exists('_id', $results))
         {
             $model = $this->model->newFromBuilder($results);
 

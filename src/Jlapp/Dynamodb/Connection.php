@@ -1,20 +1,21 @@
 <?php namespace Jlapp\Dynament;
 
-use MongoClient;
+use Aws\DynamoDb\DynamoDbClient;
+use Aws\Sdk;
 
 class Connection extends \Illuminate\Database\Connection {
 
     /**
      * The MongoDB database handler.
      *
-     * @var MongoDB
+     * @var DynamoDB
      */
     protected $db;
 
     /**
-     * The MongoClient connection handler.
+     * The DynamoDbClient connection handler.
      *
-     * @var MongoClient
+     * @var DynamoDbClient
      */
     protected $connection;
 
@@ -29,13 +30,13 @@ class Connection extends \Illuminate\Database\Connection {
         $this->config = $config;
 
         // Build the connection string
-        $dsn = $this->getDsn($config);
+        /*$sdk = $this->getSdk($config);*/
 
         // You can pass options directly to the MongoClient constructor
         $options = array_get($config, 'options', []);
 
         // Create the connection
-        $this->connection = $this->createConnection($dsn, $config, $options);
+        $this->connection = $this->createConnection($config, $options);
 
         // Select database
         $this->db = $this->connection->{$config['database']};
@@ -101,34 +102,34 @@ class Connection extends \Illuminate\Database\Connection {
     }
 
     /**
-     * Get the MongoDB database object.
+     * Get the DynamoDB database object.
      *
-     * @return  MongoDB
+     * @return  DynamoDB
      */
-    public function getMongoDB()
+    public function getDynamoDB()
     {
         return $this->db;
     }
 
     /**
-     * return MongoClient object.
+     * return DynamoDbClient object.
      *
-     * @return MongoClient
+     * @return DynamoDbClient
      */
-    public function getMongoClient()
+    /*public function getMongoClient()
     {
         return $this->connection;
-    }
+    }*/
 
     /**
-     * Create a new MongoClient connection.
+     * Create a new DynamoDbClient connection.
      *
      * @param  string  $dsn
      * @param  array   $config
      * @param  array   $options
-     * @return MongoClient
+     * @return DynamoDbClient
      */
-    protected function createConnection($dsn, array $config, array $options)
+    protected function createConnection(array $config, array $options)
     {
         // Add credentials as options, this makes sure the connection will not fail if
         // the username or password contains strange characters.
@@ -142,15 +143,19 @@ class Connection extends \Illuminate\Database\Connection {
             $options['password'] = $config['password'];
         }
 
-        // By default driver options is an empty array.
+        /*// By default driver options is an empty array.
         $driverOptions = array();
 
         if (isset($config['driver_options']) && is_array($config['driver_options']))
         {
             $driverOptions = $config['driver_options'];
-        }
+        }*/
 
-        return new MongoClient($dsn, $options, $driverOptions);
+        return new DynamoDbClient([
+            'profile' => $config['profile'],
+            'region'  => $config['region'],
+            'version'  => $config['version'],
+        ]);
     }
 
     /**
@@ -169,34 +174,23 @@ class Connection extends \Illuminate\Database\Connection {
      * @param  array   $config
      * @return string
      */
-    protected function getDsn(array $config)
+    protected function getDb(array $config)
     {
         // First we will create the basic DSN setup as well as the port if it is in
         // in the configuration options. This will give us the basic DSN we will
         // need to establish the MongoClient and return them back for use.
         extract($config);
 
-        // Check if the user passed a complete dsn to the configuration.
-        if ( ! empty($dsn))
-        {
-            return $dsn;
-        }
+        $sdk = new Sdk([
+            'profile'   => $config['profile'],
+            'region'    => $config['region'],
+            'version'   => $config['version'],
+            'DynamoDb'  => [
+                'region'    => $config['DynamoDb']['region']
+            ]
+        ]);
 
-        // Treat host option as array of hosts
-        $hosts = is_array($host) ? $host : [$host];
-
-        foreach ($hosts as &$host)
-        {
-            // Check if we need to add a port to the host
-            if (strpos($host, ':') === false and isset($port))
-            {
-                $host = "{$host}:{$port}";
-            }
-        }
-
-        // The database name needs to be in the connection string, otherwise it will
-        // authenticate to the admin database, which may result in permission errors.
-        return "mongodb://" . implode(',', $hosts) . "/{$database}";
+        return $sdk->createDynamoDb();
     }
 
     /**
@@ -217,7 +211,7 @@ class Connection extends \Illuminate\Database\Connection {
      */
     public function getDriverName()
     {
-        return 'mongodb';
+        return 'dynamodb';
     }
 
     /**

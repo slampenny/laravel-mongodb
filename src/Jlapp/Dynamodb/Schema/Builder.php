@@ -23,7 +23,7 @@ class Builder extends \Illuminate\Database\Schema\Builder {
      */
     public function hasCollection($collection)
     {
-        $db = $this->connection->getMongoDB();
+        $db = $this->connection->getDynamoDB();
 
         return in_array($collection, $db->getCollectionNames());
     }

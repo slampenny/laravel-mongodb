@@ -15,7 +15,7 @@
         "illuminate/container": "5.0.*",
         "illuminate/database": "5.0.*",
         "illuminate/events": "5.0.*",
-        "aws/aws-sdk-php": "2.*"
+        "aws/aws-sdk-php": "^3.0@dev"
     },
     "require-dev": {
         "orchestra/testbench": "3.0.*",

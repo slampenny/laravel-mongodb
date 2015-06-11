@@ -8,14 +8,14 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint {
     /**
      * The MongoConnection object for this blueprint.
      *
-     * @var MongoConnection
+     * @var DynamoConnection
      */
     protected $connection;
 
     /**
-     * The MongoCollection object for this blueprint.
+     * The DynamoCollection object for this blueprint.
      *
-     * @var MongoCollection
+     * @var DynamoCollection
      */
     protected $collection;
 
@@ -169,7 +169,7 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint {
     {
         $collection = $this->collection->getName();
 
-        $db = $this->connection->getMongoDB();
+        $db = $this->connection->getDynamoDB();
 
         // Ensure the collection is created.
         $db->createCollection($collection);
