@@ -1,5 +1,5 @@
 {
-    "name": "jlapp/dynament",
+    "name": "jlapp/dynamodb",
     "description": "A DynamoDB based Eloquent model and Query builder for Laravel 5",
     "keywords": ["laravel","eloquent","dynamodb","dynamo","database","model"],
     "authors": [
