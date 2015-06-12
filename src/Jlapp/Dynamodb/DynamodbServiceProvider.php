@@ -25,7 +25,7 @@ class DynamentServiceProvider extends ServiceProvider {
     {
         $this->app->resolving('db', function ($db)
         {
-            $db->extend('dynamodb', function ($config)
+            $db->extend('aws', function ($config)
             {
                 return new Connection($config);
             });
