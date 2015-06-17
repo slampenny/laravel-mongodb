@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Query;
+<?php namespace Jlapp\DynamoDb\Query;
 
 use MongoId;
 use MongoRegex;

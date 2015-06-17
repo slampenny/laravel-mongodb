@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Relations;
+<?php namespace Jlapp\DynamoDb\Relations;
 
 use MongoId;
 use Illuminate\Database\Eloquent\Model;

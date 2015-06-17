@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Schema;
+<?php namespace Jlapp\DynamoDb\Schema;
 
 use Closure;
 use Jlapp\Dynament\Connection;

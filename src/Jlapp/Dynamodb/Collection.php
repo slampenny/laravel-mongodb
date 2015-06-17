@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament;
+<?php namespace Jlapp\DynamoDb;
 
 use Exception;
 use MongoCollection;

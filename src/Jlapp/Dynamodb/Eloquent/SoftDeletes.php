@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Eloquent;
+<?php namespace Jlapp\DynamoDb\Eloquent;
 
 trait SoftDeletes {
 

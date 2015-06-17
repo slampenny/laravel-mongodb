@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Relations;
+<?php namespace Jlapp\DynamoDb\Relations;
 
 use Illuminate\Database\Eloquent\Relations\MorphTo as EloquentMorphTo;
 

@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Auth;
+<?php namespace Jlapp\DynamoDb\Auth;
 
 use Jlapp\Dynament\Auth\DatabaseTokenRepository as DbRepository;
 

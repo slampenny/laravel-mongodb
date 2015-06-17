@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Eloquent;
+<?php namespace Jlapp\DynamoDb\Eloquent;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 

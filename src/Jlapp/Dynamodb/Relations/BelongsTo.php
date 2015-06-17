@@ -1,4 +1,4 @@
-<?php namespace Jlapp\Dynament\Relations;
+<?php namespace Jlapp\DynamoDb\Relations;
 
 class BelongsTo extends \Illuminate\Database\Eloquent\Relations\BelongsTo {
 
