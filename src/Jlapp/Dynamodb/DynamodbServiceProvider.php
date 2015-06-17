@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class DynamentServiceProvider extends ServiceProvider {
+class DynamoDbServiceProvider extends ServiceProvider {
 
     /**
      * Bootstrap the application events.
