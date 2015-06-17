@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Database\Query\Builder as BaseBuilder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Collection;
-use Jlapp\Dynament\Connection;
+use Jlapp\DynamoDb\Connection;
 
 class Builder extends BaseBuilder {
 

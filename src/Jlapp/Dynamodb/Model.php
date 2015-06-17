@@ -5,10 +5,10 @@ use MongoId;
 use MongoDate;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Jlapp\Dynament\Eloquent\Builder;
-use Jlapp\Dynament\Relations\EmbedsOneOrMany;
-use Jlapp\Dynament\Relations\EmbedsMany;
-use Jlapp\Dynament\Relations\EmbedsOne;
+use Jlapp\DynamoDb\Eloquent\Builder;
+use Jlapp\DynamoDb\Relations\EmbedsOneOrMany;
+use Jlapp\DynamoDb\Relations\EmbedsMany;
+use Jlapp\DynamoDb\Relations\EmbedsOne;
 
 abstract class Model extends \Jlapp\Eloquent\Model {
 

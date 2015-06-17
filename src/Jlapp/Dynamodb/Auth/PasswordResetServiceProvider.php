@@ -1,6 +1,6 @@
 <?php namespace Jlapp\DynamoDb\Auth;
 
-use Jlapp\Dynament\Auth\DatabaseTokenRepository as DbRepository;
+use Jlapp\DynamoDb\Auth\DatabaseTokenRepository as DbRepository;
 
 class PasswordResetServiceProvider extends \Illuminate\Auth\Passwords\PasswordResetServiceProvider {
 

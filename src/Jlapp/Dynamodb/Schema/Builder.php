@@ -1,7 +1,7 @@
 <?php namespace Jlapp\DynamoDb\Schema;
 
 use Closure;
-use Jlapp\Dynament\Connection;
+use Jlapp\DynamoDb\Connection;
 
 class Builder extends \Illuminate\Database\Schema\Builder {
 

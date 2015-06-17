@@ -3,12 +3,12 @@
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Jlapp\Dynament\Relations\HasOne;
-use Jlapp\Dynament\Relations\HasMany;
-use Jlapp\Dynament\Relations\BelongsTo;
-use Jlapp\Dynament\Relations\BelongsToMany;
-use Jlapp\Dynament\Relations\MorphTo;
-use Jlapp\Dynament\Query\Builder as QueryBuilder;
+use Jlapp\DynamoDb\Relations\HasOne;
+use Jlapp\DynamoDb\Relations\HasMany;
+use Jlapp\DynamoDb\Relations\BelongsTo;
+use Jlapp\DynamoDb\Relations\BelongsToMany;
+use Jlapp\DynamoDb\Relations\MorphTo;
+use Jlapp\DynamoDb\Query\Builder as QueryBuilder;
 
 abstract class Model extends \Illuminate\Database\Eloquent\Model {
 
