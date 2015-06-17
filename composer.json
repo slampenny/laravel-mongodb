@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Jlapp\\Dynamodb": "src/",
+            "Jlapp\\DynamoDb": "src/",
             "Jlapp\\Eloquent": "src/"
         }
     },
