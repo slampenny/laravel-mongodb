@@ -32,14 +32,19 @@ class Connection extends \Illuminate\Database\Connection {
         // Build the connection string
         /*$sdk = $this->getSdk($config);*/
 
-        // You can pass options directly to the MongoClient constructor
-        $options = array_get($config, 'options', []);
+        // allow options set in DynamoDb array to overrite aws options
+        $dynamoConfig = array_get($config, 'DyanmoDb', []);
+        foreach ($dynamoConfig as $key => $value) {
+            if (isset($config[$key])) {
+                $config[$key] = $value;
+            }
+        }
 
         // Create the connection
-        $this->connection = $this->createConnection($config, $options);
+        $this->connection = $this->createConnection($config);
 
         // Select database
-        $this->db = $this->connection->{$config['database']};
+        $this->db = $this->getDb($config);
 
         $this->useDefaultPostProcessor();
     }
@@ -129,7 +134,7 @@ class Connection extends \Illuminate\Database\Connection {
      * @param  array   $options
      * @return DynamoDbClient
      */
-    protected function createConnection(array $config, array $options)
+    protected function createConnection(array $config)
     {
         // Add credentials as options, this makes sure the connection will not fail if
         // the username or password contains strange characters.
