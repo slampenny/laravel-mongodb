@@ -11,21 +11,15 @@ class Collection {
      * @var Connection
      */
     protected $connection;
-
-    /**
-     * The MongoCollection instance..
-     *
-     * @var MongoCollection
-     */
-    protected $collection;
+    protected $tableName;
 
     /**
      * Constructor.
      */
-    public function __construct(Connection $connection, MongoCollection $collection)
+    public function __construct(Connection $connection, $tableName)
     {
         $this->connection = $connection;
-        $this->collection = $collection;
+        $this->tableName = $tableName;
     }
 
     /**
@@ -39,7 +33,7 @@ class Collection {
     {
         $start = microtime(true);
 
-        $result = call_user_func_array([$this->collection, $method], $parameters);
+        $result = call_user_func_array([$this->connection, $method], $parameters);
 
         if ($this->connection->logging())
         {
@@ -63,7 +57,7 @@ class Collection {
                 }
             }
 
-            $queryString = $this->collection->getName() . '.' . $method . '(' . implode(',', $query) . ')';
+            $queryString = $this->$tableName . '.' . $method . '(' . implode(',', $query) . ')';
 
             $this->connection->logQuery($queryString, [], $time);
         }

@@ -44,7 +44,7 @@ class Connection extends \Illuminate\Database\Connection {
         $this->connection = $this->createConnection($config);
 
         // Select database
-        $this->db = $this->getDb($config);
+        //$this->db = $this->getDb($config);
 
         $this->useDefaultPostProcessor();
     }
@@ -136,31 +136,7 @@ class Connection extends \Illuminate\Database\Connection {
      */
     protected function createConnection(array $config)
     {
-        // Add credentials as options, this makes sure the connection will not fail if
-        // the username or password contains strange characters.
-        if ( ! empty($config['username']))
-        {
-            $options['username'] = $config['username'];
-        }
-
-        if ( ! empty($config['password']))
-        {
-            $options['password'] = $config['password'];
-        }
-
-        /*// By default driver options is an empty array.
-        $driverOptions = array();
-
-        if (isset($config['driver_options']) && is_array($config['driver_options']))
-        {
-            $driverOptions = $config['driver_options'];
-        }*/
-
-        return new DynamoDbClient([
-            'profile' => $config['profile'],
-            'region'  => $config['region'],
-            'version'  => $config['version'],
-        ]);
+        return new DynamoDbClient($config);
     }
 
     /**
