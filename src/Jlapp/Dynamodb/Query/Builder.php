@@ -81,7 +81,6 @@ class Builder extends BaseBuilder {
      * Create a new query builder instance.
      *
      * @param Connection $connection
-     * @return void
      */
     public function __construct(Connection $connection, Processor $processor)
     {

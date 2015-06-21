@@ -6,13 +6,6 @@ use Aws\Sdk;
 class Connection extends \Illuminate\Database\Connection {
 
     /**
-     * The MongoDB database handler.
-     *
-     * @var DynamoDB
-     */
-    protected $db;
-
-    /**
      * The DynamoDbClient connection handler.
      *
      * @var DynamoDbClient
@@ -23,22 +16,10 @@ class Connection extends \Illuminate\Database\Connection {
      * Create a new database connection instance.
      *
      * @param  array   $config
-     * @return void
      */
     public function __construct(array $config)
     {
         $this->config = $config;
-
-        // Build the connection string
-        /*$sdk = $this->getSdk($config);*/
-
-        // allow options set in DynamoDb array to overrite aws options
-        $dynamoConfig = array_get($config, 'DyanmoDb', []);
-        foreach ($dynamoConfig as $key => $value) {
-            if (isset($config[$key])) {
-                $config[$key] = $value;
-            }
-        }
 
         // Create the connection
         $this->connection = $this->createConnection($config);
@@ -93,7 +74,7 @@ class Connection extends \Illuminate\Database\Connection {
      */
     public function getCollection($name)
     {
-        return new Collection($this, $this->db->selectCollection($name));
+        return new Collection($this, $name);
     }
 
     /**
@@ -107,31 +88,9 @@ class Connection extends \Illuminate\Database\Connection {
     }
 
     /**
-     * Get the DynamoDB database object.
-     *
-     * @return  DynamoDB
-     */
-    public function getDynamoDB()
-    {
-        return $this->db;
-    }
-
-    /**
-     * return DynamoDbClient object.
-     *
-     * @return DynamoDbClient
-     */
-    /*public function getMongoClient()
-    {
-        return $this->connection;
-    }*/
-
-    /**
      * Create a new DynamoDbClient connection.
      *
-     * @param  string  $dsn
      * @param  array   $config
-     * @param  array   $options
      * @return DynamoDbClient
      */
     protected function createConnection(array $config)
@@ -157,21 +116,9 @@ class Connection extends \Illuminate\Database\Connection {
      */
     protected function getDb(array $config)
     {
-        // First we will create the basic DSN setup as well as the port if it is in
-        // in the configuration options. This will give us the basic DSN we will
-        // need to establish the MongoClient and return them back for use.
-        extract($config);
+        $this->connection = $this->createConnection($config);
 
-        $sdk = new Sdk([
-            'profile'   => $config['profile'],
-            'region'    => $config['region'],
-            'version'   => $config['version'],
-            'DynamoDb'  => [
-                'region'    => $config['DynamoDb']['region']
-            ]
-        ]);
-
-        return $sdk->createDynamoDb();
+        return $this->connection;
     }
 
     /**
@@ -195,6 +142,22 @@ class Connection extends \Illuminate\Database\Connection {
         return 'dynamodb';
     }
 
+    public function find($tableName, $id, $columns = array()) {
+        $iterator = $this->connection->getIterator('Query', array(
+            'TableName' => $tableName,
+            'ScanFilter' => array(
+                $id => array(
+                    'AttributeValueList' => array(
+                        array('S' => 'overflow')
+                    ),
+                    'ComparisonOperator' => 'EQUALS'
+                )
+            ),
+            'Select' => 'string',
+            'AttributesToGet' => $columns
+        ));
+    }
+
     /**
      * Dynamically pass methods to the connection.
      *
@@ -204,7 +167,7 @@ class Connection extends \Illuminate\Database\Connection {
      */
     public function __call($method, $parameters)
     {
-        return call_user_func_array(array($this->db, $method), $parameters);
+        return call_user_func_array(array($this->connection, $method), $parameters);
     }
 
 }
