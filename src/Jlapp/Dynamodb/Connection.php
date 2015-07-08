@@ -142,20 +142,41 @@ class Connection extends \Illuminate\Database\Connection {
         return 'dynamodb';
     }
 
-    public function find($tableName, $id, $columns = array()) {
-        $iterator = $this->connection->getIterator('Query', array(
-            'TableName' => $tableName,
-            'ScanFilter' => array(
+    public function find($tableName, $id, $columns = array('*'), $timeout, $orders, $offset, $limit) {
+        if (is_array($id)) {
+            //if (count($id)) {
+            $scanFilter = [];
+            foreach ($id as $idValue) {
+                $scanFilter[$idValue] =
+                    array(
+                        'AttributeValueList' => array(
+                            array('S' => 'overflow')
+                        ),
+                        'ComparisonOperator' => 'EQUALS'
+                    );
+            }
+            //}
+
+        } else {
+            $scanFilter = [
                 $id => array(
                     'AttributeValueList' => array(
                         array('S' => 'overflow')
                     ),
                     'ComparisonOperator' => 'EQUALS'
                 )
-            ),
-            'Select' => 'string',
-            'AttributesToGet' => $columns
-        ));
+            ];
+        }
+
+
+        $iterator = $this->connection->getIterator('Scan', array(
+            'TableName' => $tableName,
+            //'ScanFilter' => $scanFilter,
+            //'Select' => 'string',
+            //'AttributesToGet' => $columns
+        ), ['limit' => $limit]);
+
+        return $iterator;
     }
 
     /**

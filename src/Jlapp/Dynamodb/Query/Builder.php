@@ -287,14 +287,14 @@ class Builder extends BaseBuilder {
             }
 
             // Execute query and get MongoCursor
-            $cursor = $this->collection->find($wheres, $columns);
+            $cursor = $this->collection->find($wheres, $columns, $this->timeout, $this->orders, $this->offset, $this->limit);
 
             // Apply order, offset, limit and hint
-            if ($this->timeout) $cursor->timeout($this->timeout);
+            /*if ($this->timeout) $cursor->timeout($this->timeout);
             if ($this->orders)  $cursor->sort($this->orders);
             if ($this->offset)  $cursor->skip($this->offset);
             if ($this->limit)   $cursor->limit($this->limit);
-            if ($this->hint)    $cursor->hint($this->hint);
+            if ($this->hint)    $cursor->hint($this->hint);*/
 
             // Return results as an array with numeric keys
             return iterator_to_array($cursor, false);
